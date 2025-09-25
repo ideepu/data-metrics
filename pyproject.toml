@@ -1,0 +1,32 @@
+[project]
+name = "data-metrics"
+version = "0.1.0"
+description = "Python data metric dashboard service"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = ["flask>=3.1.2", "pydantic>=2.11.9", "sqlalchemy>=2.0.43"]
+
+
+[tool.ruff]
+line-length = 120
+indent-width = 4
+
+
+[tool.ruff.format]
+quote-style = "single"
+
+[tool.pylint.format]
+max-line-length = 120
+
+[tool.pylint.messages_control]
+disable = ["missing-docstring", "too-few-public-methods"]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.4.2",
+    "ruff>=0.13.1",
+]
+
+[tool.mypy]
+plugins = ["pydantic.mypy"]
+check_untyped_defs = true

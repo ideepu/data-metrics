@@ -1,3 +1,9 @@
+# Python
+*cache*
+.python-version
+*.db
+shell
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
