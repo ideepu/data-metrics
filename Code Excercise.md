@@ -10,6 +10,34 @@ Ensure you have the following installed on your system:
 
 The project uses uv package manager, install it from [the uv webiste](https://docs.astral.sh/uv/).
 
+```bash
+git clone https://github.com/ideepu/data-metrics.git
+cd data-metrics
+uv sync
+uv run run.py
+```
+
+**Endpoint 1:** Add two columns
+
+```bash
+curl --location --request GET 'http://localhost:9292/api/stats/sum' \
+--header 'Content-Type: application/json' \
+--data '{
+    "first_column_name": "column_1",
+    "second_column_name": "column_5"
+}'
+```
+
+**Endpoint 2:** Custom formula
+
+```bash
+curl --location --request GET 'http://localhost:9292/api/stats/custom' \
+--header 'Content-Type: application/json' \
+--data '{
+    "formula": "column_1 - column_2 / column_3 * column_4 + column_5"
+}'
+```
+
 ## TODO List
 
 1. Config management per environment

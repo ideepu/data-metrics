@@ -1,4 +1,4 @@
-from typing import Any, Iterator
+from typing import Iterator
 from unittest.mock import patch
 
 import pytest
@@ -16,12 +16,6 @@ engine = create_engine(url=make_url(DB_URL), echo=False)
 scoped_session_maker: scoped_session[Session] = scoped_session(sessionmaker(bind=engine))
 
 
-class BaseTestFlaskClient(FlaskClient):
-    def json_get(self, url: str, **kwargs: Any):
-        kwargs['content_type'] = 'application/json'
-        return super().get(url, **kwargs)
-
-
 class BaseTest:
     assert_raises = staticmethod(pytest.raises)
     app: Flask
@@ -31,7 +25,6 @@ class BaseTest:
     def testing_app(self) -> Flask:
         application = create_app('testing_app')
         application.config.update({'TESTING': True})
-        application.test_client_class = BaseTestFlaskClient
         return application
 
     @pytest.fixture(autouse=True)
